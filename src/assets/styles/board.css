@@ -4,6 +4,10 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
 }
 
 .board-container:active {
