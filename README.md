@@ -4,6 +4,11 @@ An advanced, visually impressive 3D Tic Tac Toe game built with React, featuring
 
 ## ✨ Features
 
+### Two Game Modes
+- **3×3 Classic Mode**: Traditional Tic Tac Toe with 3D effects
+- **4×4×4 Cube Mode**: Advanced 3D cube gameplay with layer-based navigation
+
+### Advanced Effects
 - **3D Board Rotation**: Drag the board to rotate it freely in 3D space
 - **Inertia Physics**: Smooth momentum-based rotation continues after release
 - **Parallax Background**: Subtle depth effect following mouse movement
@@ -14,6 +19,8 @@ An advanced, visually impressive 3D Tic Tac Toe game built with React, featuring
 - **Glassmorphism UI**: Modern frosted glass design elements
 - **Touch Support**: Full support for mobile touch interactions
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+- **Layer Navigation**: Switch between cube layers in 4×4×4 mode
+- **3D Win Detection**: Checks all possible winning lines in 3D space
 
 ## 🚀 Getting Started
 
@@ -40,11 +47,22 @@ npm run dev
 
 ## 🎮 How to Play
 
-1. Click on any empty cell to make your move
-2. Drag the board to rotate it in 3D space
-3. The game alternates between X and O players
-4. Get three in a row (horizontally, vertically, or diagonally) to win
-5. Click "Restart Game" to start a new game
+### 3×3 Classic Mode
+1. Select "3×3 Classic" mode
+2. Click on any empty cell to make your move
+3. Drag the board to rotate it in 3D space
+4. The game alternates between X and O players
+5. Get three in a row (horizontally, vertically, or diagonally) to win
+6. Click "Restart Game" to start a new game
+
+### 4×4×4 Cube Mode
+1. Select "4×4×4 Cube" mode
+2. Use the layer buttons (1, 2, 3, 4) to navigate between cube layers
+3. Click on any empty cell in the current layer to make your move
+4. Drag the board to rotate the entire cube
+5. Get four in a row to win (can be across layers, diagonals, or any direction)
+6. Coordinates (x,y,z) are shown in each cell for reference
+7. Click "Restart Game" to start a new game
 
 ## 🛠️ Tech Stack
 

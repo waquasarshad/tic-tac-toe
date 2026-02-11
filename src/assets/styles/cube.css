@@ -1,0 +1,163 @@
+.cube-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.layer-selector {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.layer-label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  text-align: center;
+}
+
+.layer-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.layer-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.layer-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(102, 126, 234, 0.6);
+}
+
+.layer-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.cube-board-container {
+  perspective: 1200px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.cube-board-container:active {
+  cursor: grabbing;
+}
+
+.cube-board-wrapper {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.cube-board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+}
+
+.cube-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cube-cell {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cube-cell:not(.filled):hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: scale(1.05);
+}
+
+.cube-cell.filled {
+  cursor: default;
+  animation: cellFlip 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cube-cell.winning {
+  background: rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.8);
+  animation: winningPulse 1s ease-in-out infinite;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.cube-cell.losing {
+  opacity: 0.4;
+}
+
+.cell-coordinates {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+.cube-hint {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .cube-cell {
+    width: 55px;
+    height: 55px;
+  }
+
+  .layer-buttons {
+    gap: 0.4rem;
+  }
+
+  .layer-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cube-cell {
+    width: 45px;
+    height: 45px;
+  }
+
+  .cell-coordinates {
+    font-size: 7px;
+  }
+}
