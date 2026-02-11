@@ -126,7 +126,7 @@ function App() {
               gameOver={winner !== null || isDraw}
             />
           ) : (
-            <Cube3DScene
+            <Cube3D
               cube={cube}
               onCellClick={handleCubeCellClick}
               winningLine={winningLine}

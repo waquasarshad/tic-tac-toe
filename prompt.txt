@@ -1,145 +1,220 @@
-Ah! Now I get you perfectly 😎 — the challenge isn’t **game logic**, it’s **visualizing the 4x4x4 cube in 3D** so players can actually **click cells inside the cube**. You want **a real 3D cube of smaller cubes** that players interact with. Let me break it down **step by step in React + Three.js**.
+Here is a **complete, detailed prompt** you can copy and use to generate your advanced React Tic Tac Toe project exactly the way you want.
 
 ---
 
-# **1️⃣ Use React + Three.js (@react-three/fiber)**
+## 🚀 FULL PROJECT GENERATION PROMPT
 
-Install the libraries:
+Create a fully frontend **advanced 3D Tic Tac Toe game** using **React**. The project must be visually impressive and demonstrate advanced animation, interaction design, and 3D effects. No backend required.
 
-```bash
-npm install three @react-three/fiber @react-three/drei
+The goal is to showcase:
+
+* Advanced CSS transforms
+* 3D perspective
+* Physics-based motion
+* Three.js integration (if needed)
+* Interaction design thinking
+* Visual creativity
+* Production-level polish
+
+---
+
+## 🧱 Core Requirements
+
+### 1️⃣ Tech Stack
+
+* React (Vite or Create React App)
+* Three.js (for 3D effects)
+* CSS3 (advanced transforms & perspective)
+* SVG animations
+* No backend
+* Must be deployable on GitHub Pages
+
+---
+
+## 🎮 Game Logic
+
+* Standard 3x3 Tic Tac Toe
+* Alternating turns (X and O)
+* Win detection
+* Draw detection
+* Restart button
+* Clean state management using React hooks
+
+Optional bonus:
+
+* Add 3D 4x4x4 cube Tic Tac Toe mode
+
+---
+
+## 🎨 Board Effects & Interactions
+
+### 🖱 Hover Effects
+
+* Each cell rotates slightly on hover
+* Smooth 3D tilt effect
+
+### 🔄 Move Played
+
+* Cell flips in 3D when clicked
+* X or O appears with SVG stroke drawing animation
+
+### 🌀 Drag Interaction
+
+* User can drag mouse to rotate entire board freely
+* Like a 3D product viewer
+* Add smooth inertia (momentum continues briefly after release)
+* Use requestAnimationFrame for smoothness
+
+### 🌌 Parallax
+
+* Subtle parallax movement based on mouse position
+* Background shifts slightly
+* Adds depth
+
+### 💡 Dynamic Lighting
+
+* Light source changes based on board rotation
+* Simulate shadow depth
+* Slight gradient shift
+
+---
+
+## 🏆 Win Animation
+
+When someone wins:
+
+* Winning cells lift upward in 3D
+* Losing cells drop slightly
+* Entire board tilts dramatically
+* Add 3D confetti effect
+* Add subtle camera shake effect
+  (Small shake but noticeable quality boost)
+
+---
+
+## ✨ Advanced Animation
+
+* Animate X and O using SVG stroke-dashoffset drawing
+* Smooth easing functions (cubic-bezier)
+* No abrupt animations
+* Use physics-inspired motion curves
+
+---
+
+## 🎥 Visual Polish
+
+* Glassmorphism UI panel
+* Soft shadows
+* Depth layers
+* Clean typography
+* Dark modern theme
+
+---
+
+## 📁 Folder Structure (GitHub Pages Ready)
+
+Use this structure:
+
+```
+tic-tac-toe-3d/
+│
+├── public/
+│   ├── favicon.ico
+│   └── index.html
+│
+├── src/
+│   ├── assets/
+│   │   ├── styles/
+│   │   │   ├── global.css
+│   │   │   ├── board.css
+│   │   │   └── animations.css
+│   │   └── icons/
+│   │       ├── X.svg
+│   │       └── O.svg
+│   │
+│   ├── components/
+│   │   ├── Board.jsx
+│   │   ├── Cell.jsx
+│   │   ├── Confetti.jsx
+│   │   ├── CameraEffects.jsx
+│   │   └── Controls.jsx
+│   │
+│   ├── hooks/
+│   │   ├── useDragRotate.js
+│   │   ├── useInertia.js
+│   │   └── useParallax.js
+│   │
+│   ├── utils/
+│   │   ├── gameLogic.js
+│   │   └── winCheck.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── threeScene.js
+│
+├── package.json
+├── vite.config.js
+└── README.md
 ```
 
-* `@react-three/fiber` → React renderer for Three.js
-* `@react-three/drei` → helpers like orbit controls, lighting, etc.
-
 ---
 
-# **2️⃣ Create a 3D Canvas**
+## 🌍 GitHub Pages Setup
 
-Wrap your 3D scene in a Canvas:
+* Use Vite
+* Set base path properly
+* Add:
 
-```jsx
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-
-<Canvas camera={{ position: [6, 6, 10], fov: 50 }}>
-  <ambientLight intensity={0.5} />
-  <pointLight position={[10, 10, 10]} />
-  <OrbitControls enablePan={false} />
-  
-  {/* 3D Cube will go here */}
-</Canvas>
+```
+npm run build
+npm run deploy
 ```
 
-* `OrbitControls` lets the user rotate the cube with the mouse.
-* The camera is positioned so the cube is fully visible.
+* Use gh-pages package
+* Make it production ready
 
 ---
 
-# **3️⃣ Represent the 4x4x4 Cube**
+## 🎯 Quality Requirements
 
-We need **64 small cubes** positioned in 3D:
-
-```jsx
-const CubeBoard = ({ board, handleClick }) => {
-  const size = 1;     // each small cube
-  const gap = 0.2;    // space between cubes
-
-  const cubes = [];
-  for (let x = 0; x < 4; x++) {
-    for (let y = 0; y < 4; y++) {
-      for (let z = 0; z < 4; z++) {
-        cubes.push(
-          <mesh
-            key={`${x}-${y}-${z}`}
-            position={[
-              (x - 1.5) * (size + gap),
-              (y - 1.5) * (size + gap),
-              (z - 1.5) * (size + gap)
-            ]}
-            onClick={() => handleClick(x, y, z)}
-          >
-            <boxGeometry args={[size, size, size]} />
-            <meshStandardMaterial
-              color={board[x][y][z] ? (board[x][y][z] === "X" ? "red" : "blue") : "gray"}
-              transparent
-              opacity={0.5}
-            />
-          </mesh>
-        );
-      }
-    }
-  }
-
-  return <>{cubes}</>;
-};
-```
-
-✅ This will render **64 semi-transparent cubes in a 4x4x4 formation**.
-
-* `opacity={0.5}` makes it easy to see cubes behind
-* Clicking calls `handleClick(x, y, z)`
+* Smooth 60fps animations
+* Clean component structure
+* Reusable hooks
+* No inline messy CSS
+* Modular architecture
+* Professional README
+* Mobile responsive
+* Touch support for rotation
 
 ---
 
-# **4️⃣ Integrate Game State**
+## 💎 Bonus Creative Mode
 
-```jsx
-const [board, setBoard] = useState(createEmptyBoard());
+Add optional:
 
-const handleClick = (x, y, z) => {
-  if (board[x][y][z]) return;
-  const newBoard = structuredClone(board);
-  newBoard[x][y][z] = currentPlayer;
-  setBoard(newBoard);
-  setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
-};
-```
-
-* This links each cube to your game logic.
+* 3D cube 4x4x4 Tic Tac Toe
+* Fully rotatable cube
+* Layer-based winning logic
 
 ---
 
-# **5️⃣ Make It Interactive**
+## 🎬 Final Goal
 
-* `OrbitControls` lets users rotate and see the whole cube.
-* Semi-transparent cubes allow seeing inner layers.
-* Clicking a cube marks it with X/O color.
-* You can animate the placement using scale or glow if desired:
+The project should feel like:
 
-```jsx
-<meshStandardMaterial
-  color={board[x][y][z] ? (board[x][y][z] === "X" ? "red" : "blue") : "gray"}
-  transparent
-  opacity={0.6}
-  emissive={board[x][y][z] ? "yellow" : "black"}
-/>
-```
+* A portfolio-level frontend masterpiece
+* Something that impresses recruiters
+* A demonstration of deep frontend engineering skill
+
+It should not feel like a basic beginner Tic Tac Toe.
 
 ---
 
-# **6️⃣ Optional Polishing**
+If you want, I can now:
 
-1. **Highlight winning cubes**: change color or add glow.
-2. **Scale animation**: make cube pop when clicked.
-3. **Camera zoom on win**: zoom toward the winning line.
-4. **Add background effects**: stars, light fog, or neon aesthetic.
+* 🔥 Generate the starter Vite setup commands
+* 🔥 Write the core React game logic
+* 🔥 Build the drag + inertia hook
+* 🔥 Help you deploy to GitHub Pages step by step
 
----
-
-# ✅ **Summary**
-
-* Each **cell in the 4x4x4 cube is a small cube (`<mesh>` in Three.js)**
-* **Position them in 3D** using `x, y, z` coordinates
-* **OrbitControls** lets players rotate the cube
-* **Click handling** updates game state
-* **Opacity & color** make inner layers visible and interactive
-
-This is **exactly how you turn flat layers into a 3D cube that players can play in**.
-
----
-
-If you want, I can **write a full React component** that renders the **4x4x4 interactive 3D cube with clickable cells**, ready to paste into your project.
-
-Do you want me to do that?
+Just tell me which part you want first 🚀
