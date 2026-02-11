@@ -1,0 +1,23 @@
+.draw-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawLine 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) forwards;
+}
+
+.draw-circle {
+  stroke-dasharray: 188.5;
+  stroke-dashoffset: 188.5;
+  animation: drawCircle 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
