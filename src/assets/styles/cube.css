@@ -138,19 +138,32 @@
   font-style: italic;
 }
 
+@media (max-width: 1024px) {
+  .all-layers-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .cube-cell {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 @media (max-width: 768px) {
+  .all-layers-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
   .cube-cell {
     width: 55px;
     height: 55px;
   }
-
-  .layer-buttons {
-    gap: 0.4rem;
-  }
-
-  .layer-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+  
+  .layer-title {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
   }
 }
 
@@ -159,8 +172,13 @@
     width: 45px;
     height: 45px;
   }
-
-  .cell-coordinates {
-    font-size: 7px;
+  
+  .cube-board {
+    padding: 12px;
+    gap: 6px;
+  }
+  
+  .cube-row {
+    gap: 6px;
   }
 }
